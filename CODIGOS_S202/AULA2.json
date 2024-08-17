@@ -1,0 +1,38 @@
+[
+    {
+        "professor": {
+            "nome": "Lucas"
+        },
+        "assunto": "POO",
+        "alunos": [
+            {"nome": "Maria"},
+            {"nome": "Pedro"},
+            {"nome": "João"},
+            {"nome": "Mariana"}
+        ]
+    },
+    {
+        "professor": {
+            "nome": "Ana"
+        },
+        "assunto": "Estruturas de Dados",
+        "alunos": [
+            {"nome": "Rafael"},
+            {"nome": "Luísa"},
+            {"nome": "Fernanda"},
+            {"nome": "Tiago"}
+        ]
+    },
+    {
+        "professor": {
+            "nome": "Carlos"
+        },
+        "assunto": "Algoritmos",
+        "alunos": [
+            {"nome": "Beatriz"},
+            {"nome": "Rodrigo"},
+            {"nome": "Camila"},
+            {"nome": "Felipe"}
+        ]
+    }
+]

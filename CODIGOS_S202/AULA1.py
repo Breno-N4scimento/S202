@@ -19,7 +19,7 @@ class Aula:
         self.alunos = []
 
     def adicionar_aluno(self, aluno):
-        self.alunos.append(aluno)
+        self.alunos.appenxd(aluno)
 
     def listar_presenca(self):
         lista_presenca = f"Presença na aula sobre {self.assunto}, ministrada pelo professor {self.professor.nome}:\n"
