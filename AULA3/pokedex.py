@@ -17,23 +17,22 @@ class Pokedex:
     def get_pokemon_with_next_evolution(self):
         return self.database.collection.find({"next_evolution": {"$exists": True, "$ne": None}})
 
-# Exemplo de uso
 if __name__ == "__main__":
     db = Database(database="pokedex", collection="pokemons")
     pokedex = Pokedex(db)
 
-    # Exemplo 1: Consultar por ID
-    charmander = pokedex.get_pokemon_by_id(4)  # Charmander tem ID 4
+    #exemplo 1: consultar por ID
+    charmander = pokedex.get_pokemon_by_id(4)  # charmander tem ID 4
     writeAJson(charmander, "charmander_id")
 
-    # Exemplo 2: Consultar por Fraqueza (Weakness)
+    #exemplo 2: consultar por fraqueza (Weakness)
     pokemons_weak_to_water = pokedex.get_pokemon_by_weakness("Water")
     writeAJson(pokemons_weak_to_water, "pokemons_weak_to_water")
 
-    # Exemplo 3: Consultar por Chance de Aparição (Spawn Chance)
-    pokemons_common = pokedex.get_pokemon_by_spawn_chance(0.5, 1.0)  # Pokémons com spawn chance entre 0.5 e 1.0
+    #exemplo 3: consultar por chance de eparição (Spawn Chance)
+    pokemons_common = pokedex.get_pokemon_by_spawn_chance(0.5, 1.0)  # pokémons com spawn chance entre 0.5 e 1.0
     writeAJson(pokemons_common, "pokemons_common_spawn_chance")
 
-    # Exemplo 4: Consultar Pokémons com Evolução
+    #exemplo 4: consultar pokémons com evolução
     pokemons_with_evolution = pokedex.get_pokemon_with_next_evolution()
     writeAJson(pokemons_with_evolution, "pokemons_with_evolution")
