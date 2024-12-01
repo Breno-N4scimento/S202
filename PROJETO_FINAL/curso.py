@@ -1,12 +1,12 @@
 class Curso:
     def __init__(self, curso_id, nome, professor):
-        self.course_id = curso_id
-        self.name = nome
+        self.curso_id = curso_id
+        self.nome = nome
         self.professor = professor
 
     def to_dict(self):
         return {
-            "_id": self.course_id,
-            "nome": self.name,
+            "id": self.curso_id,  # Garantir que 'id' seja atribuído
+            "nome": self.nome,
             "professor": self.professor
         }

@@ -1,21 +1,21 @@
 from pymongo import MongoClient
 
 class GerenciadorBD:
-    def __init__(self, uri="mongodb://localhost:27017", nome_bd="sistema_faculdade"):
-        self.cliente = MongoClient(uri)
-        self.banco = self.cliente[nome_bd]  # Atributo correto
+    def __init__(self, uri, nome_banco):
+        self.client = MongoClient(uri)
+        self.db = self.client[nome_banco]
 
-    def inserir(self, colecao, dados):
-        return self.banco[colecao].insert_one(dados)
+    def buscar_um(self, collection, filtro):
+        return self.db[collection].find_one(filtro)
 
-    def buscar_todos(self, colecao):
-        return list(self.banco[colecao].find())
+    def buscar_todos(self, collection):
+        return list(self.db[collection].find())
 
-    def buscar_um(self, colecao, filtro):
-        return self.banco[colecao].find_one(filtro)
+    def inserir(self, collection, dados):
+        self.db[collection].insert_one(dados)
 
-    def atualizar(self, colecao, filtro, novos_dados):
-        return self.banco[colecao].update_one(filtro, {"$set": novos_dados})
+    def atualizar(self, collection, filtro, novos_dados):
+        self.db[collection].update_one(filtro, {"$set": novos_dados})
 
-    def deletar(self, colecao, filtro):
-        return self.banco[colecao].delete_one(filtro)  # Correção aqui para self.banco
+    def deletar(self, collection, filtro):
+        return self.db[collection].delete_one(filtro)

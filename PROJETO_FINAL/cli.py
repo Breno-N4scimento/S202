@@ -54,38 +54,42 @@ class CLI:
             print("Estudante não encontrado.")
 
     def criar_curso(self):
-        curso_id = input("ID do Curso: ")
+        curso_id = input("ID do Curso: ")  # ID manual
         nome = input("Nome do Curso: ")
         professor = input("Professor: ")
-        curso = Curso(curso_id, nome, professor)
-        self.gerenciador_bd.inserir("cursos", curso.to_dict())
+
+        curso = {"id": curso_id, "nome": nome, "professor": professor}
+        self.gerenciador_bd.inserir("cursos", curso)
         print("Curso cadastrado com sucesso!")
 
     def listar_cursos(self):
         cursos = self.gerenciador_bd.buscar_todos("cursos")
-        if not cursos:
-            print("Nenhum curso encontrado.")
-            return
         print("\n=== Lista de Cursos ===")
         for curso in cursos:
             print(f"{curso['id']} - {curso['nome']} (Professor: {curso['professor']})")
 
     def atualizar_curso(self):
         curso_id = input("ID do Curso a ser atualizado: ")
-        curso = self.gerenciador_bd.buscar_um("cursos", {"id": curso_id})
+        filtro = {"id": curso_id}  # Buscar pelo campo 'id'
+
+        curso = self.gerenciador_bd.buscar_um("cursos", filtro)
         if not curso:
             print("Curso não encontrado.")
             return
-        nome = input(f"Novo Nome ({curso['nome']}): ")
-        professor = input(f"Novo Professor ({curso['professor']}): ")
-        novos_dados = {"nome": nome, "professor": professor}
-        self.gerenciador_bd.atualizar("cursos", {"id": curso_id}, novos_dados)
+
+        novo_nome = input("Novo Nome do Curso: ")
+        novo_professor = input("Novo Professor: ")
+
+        novos_dados = {"nome": novo_nome, "professor": novo_professor}
+        self.gerenciador_bd.atualizar("cursos", filtro, novos_dados)
         print("Curso atualizado com sucesso!")
 
     def deletar_curso(self):
         curso_id = input("ID do Curso a ser deletado: ")
-        result = self.gerenciador_bd.deletar("cursos", {"id": curso_id})
-        if result.deleted_count > 0:
+        filtro = {"id": curso_id}  # Buscar pelo campo 'id'
+
+        resultado = self.gerenciador_bd.deletar("cursos", filtro)
+        if resultado.deleted_count > 0:
             print("Curso deletado com sucesso!")
         else:
             print("Curso não encontrado.")

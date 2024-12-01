@@ -2,7 +2,10 @@ from database import GerenciadorBD
 from cli import CLI
 
 def main():
-    gerenciador_bd = GerenciadorBD()
+    uri = "mongodb://localhost:27017"  # Ou o URI do seu MongoDB Atlas
+    nome_banco = "sistema_estudantes"
+
+    gerenciador_bd = GerenciadorBD(uri, nome_banco)
     cli = CLI(gerenciador_bd)
 
     while True:
