@@ -6,7 +6,7 @@ class Curso:
 
     def to_dict(self):
         return {
-            "id": self.curso_id,  # Garantir que 'id' seja atribuído
+            "id": self.curso_id,
             "nome": self.nome,
             "professor": self.professor
         }

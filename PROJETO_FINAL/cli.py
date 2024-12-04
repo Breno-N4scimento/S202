@@ -1,5 +1,4 @@
 from aluno import Aluno
-from curso import Curso
 
 class CLI:
     def __init__(self, gerenciador_bd):
@@ -54,7 +53,7 @@ class CLI:
             print("Estudante não encontrado.")
 
     def criar_curso(self):
-        curso_id = input("ID do Curso: ")  # ID manual
+        curso_id = input("ID do Curso: ")
         nome = input("Nome do Curso: ")
         professor = input("Professor: ")
 
@@ -70,7 +69,7 @@ class CLI:
 
     def atualizar_curso(self):
         curso_id = input("ID do Curso a ser atualizado: ")
-        filtro = {"id": curso_id}  # Buscar pelo campo 'id'
+        filtro = {"id": curso_id}
 
         curso = self.gerenciador_bd.buscar_um("cursos", filtro)
         if not curso:
@@ -86,7 +85,7 @@ class CLI:
 
     def deletar_curso(self):
         curso_id = input("ID do Curso a ser deletado: ")
-        filtro = {"id": curso_id}  # Buscar pelo campo 'id'
+        filtro = {"id": curso_id}
 
         resultado = self.gerenciador_bd.deletar("cursos", filtro)
         if resultado.deleted_count > 0:
